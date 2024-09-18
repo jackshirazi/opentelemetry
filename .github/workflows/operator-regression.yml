@@ -19,6 +19,17 @@ jobs:
         run:
            bash test/operator/kind-with-registry.sh
 
+      - name: Create Test Images
+        run: |
+           export START_WD=`pwd`
+           for t in ${AGENT_TESTS[@]}
+           do
+             echo "Creating image for $t"
+             docker build -t $t-test-app test/operator/$t
+             docker tag $t-test-app localhost:5001/registry/$t-test-app
+             docker push localhost:5001/registry/$t-test-app
+           done
+
       - name: Set up Helm
         uses: azure/setup-helm@v4
         with:
