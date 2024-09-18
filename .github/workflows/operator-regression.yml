@@ -42,7 +42,7 @@ jobs:
           bash test/operator/wait_for_pod_start.sh opentelemetry-operator-system opentelemetry-operator-controller-manager 2/2 1
           kubectl get pods -A
 
-      - name: Add Banana Namespace
+      - name: Add Namespaces And Instrumentation Skeleton
         run: |
           kubectl create namespace banana
 
@@ -53,7 +53,7 @@ jobs:
             echo "Starting pod for $t"
             kubectl create -f test/operator/$t/test-app.yaml
             bash -x test/operator/wait_for_pod_start.sh banana $t-test-app 1/1 1
-            kubectl logs $t-test-app
+            kubectl logs $t-test-app -n banana
             kubectl delete -f test/operator/$t/test-app.yaml
             #bash -x test/$t/agent_has_started.sh
           done
