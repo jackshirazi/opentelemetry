@@ -4,7 +4,7 @@ metadata:
   name: java-test-app
   namespace: banana
   annotations:
-    co.elastic.apm/attach: java
+    instrumentation.opentelemetry.io/inject-java: "elastic-otel/elastic-instrumentation"
   labels:
     app: java-test-app
 spec:

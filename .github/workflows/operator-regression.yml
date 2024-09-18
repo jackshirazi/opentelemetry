@@ -45,6 +45,8 @@ jobs:
       - name: Add Namespaces And Instrumentation Skeleton
         run: |
           kubectl create namespace banana
+          kubectl create namespace elastic-otel
+          kubectl create -f test/operator/elastic-instrumentation.yml
 
       - name: Start Test Images
         run: |

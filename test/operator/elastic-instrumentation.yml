@@ -1,0 +1,17 @@
+apiVersion: opentelemetry.io/v1alpha1
+kind: Instrumentation
+metadata:
+  name: elastic-instrumentation
+  namespace: elastic-otel
+spec:
+  exporter:
+    endpoint: http://opentelemetry-kube-stack-daemon-collector:4318
+  propagators:
+    - tracecontext
+    - baggage
+    - b3
+  sampler:
+    type: parentbased_traceidratio
+    argument: "1.0"
+  java:
+    image: ghcr.io/open-telemetry/opentelemetry-operator/autoinstrumentation-java:2.5.0
