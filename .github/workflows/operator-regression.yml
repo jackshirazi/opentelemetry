@@ -1,0 +1,32 @@
+name: Regression Testing Operator Integration
+
+on:
+  workflow_dispatch:
+
+env:
+  AGENT_TESTS: java
+
+jobs:
+  integration-test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Create Kind cluster and local Docker registry
+        run:
+           sh test/operator/kind-with-registry.sh
+
+      - name: Set up Helm
+        uses: azure/setup-helm@v4
+        with:
+          version: v3.11.2
+
+      - name: Install webhook
+        run: |
+          kubectl apply -f https://github.com/cert-manager/cert-manager/releases/download/v1.15.3/cert-manager.yaml
+          sh test/operator/wait_for_cert_manager_start.sh 
+          #kubectl apply -f https://github.com/open-telemetry/opentelemetry-operator/releases/latest/download/opentelemetry-operator.yaml
+          #opentelemetry-operator-system
