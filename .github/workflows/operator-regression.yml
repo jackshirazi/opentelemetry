@@ -24,9 +24,10 @@ jobs:
         with:
           version: v3.11.2
 
-      - name: Install webhook
+      - name: Install Operator Skeleton
         run: |
           kubectl apply -f https://github.com/cert-manager/cert-manager/releases/download/v1.15.3/cert-manager.yaml
-          bash test/operator/wait_for_pod_start.sh x 01
-          #kubectl apply -f https://github.com/open-telemetry/opentelemetry-operator/releases/latest/download/opentelemetry-operator.yaml
-          #opentelemetry-operator-system
+          bash test/operator/wait_for_pod_start.sh cert-manager 0/1
+          kubectl apply -f https://github.com/open-telemetry/opentelemetry-operator/releases/latest/download/opentelemetry-operator.yaml
+          bash test/operator/wait_for_pod_start.sh opentelemetry-operator-system 0/2
+          bash test/operator/wait_for_pod_start.sh opentelemetry-operator-system 1/2
