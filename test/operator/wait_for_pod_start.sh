@@ -13,7 +13,7 @@ count=0
 while [ $count -lt $MAX_WAIT_SECONDS ]
 do
   count=`expr $count + 1`
-  STARTED=`kubectl get pod -n $NAMESPACE | grep "$GREP" | wc -l`
+  STARTED=$(kubectl get pod -n $NAMESPACE | (grep "$GREP" || true) | wc -l)
   if [ $STARTED -eq 0 ]
   then
     exit 0
