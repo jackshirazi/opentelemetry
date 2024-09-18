@@ -1,4 +1,6 @@
-#!/bin/sh
+#!/bin/bash
+
+set -euxo pipefail
 
 MAX_WAIT_SECONDS=60
 NAMESPACE=$1
