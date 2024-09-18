@@ -8,7 +8,9 @@ GREP=$2
 
 set +u
 
-echo "Waiting up to $MAX_WAIT_SECONDS seconds for the cert managers to start"
+echo "Waiting an initial 10 seconds for the cert managers to start"
+sleep 10
+echo "Waiting up to $MAX_WAIT_SECONDS more seconds for the cert managers to start"
 count=0
 while [ $count -lt $MAX_WAIT_SECONDS ]
 do
