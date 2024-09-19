@@ -16,4 +16,4 @@ spec:
       - name: OTEL_LOG_LEVEL
         value: "debug"
       - name: AGENT_HAS_STARTED_IF_YOU_SEE
-        value: "javaagent.tooling.VersionLogger - opentelemetry-javaagent"
+        value: "@opentelemetry/instrumentation-http Applying instrumentation patch for nodejs core module"
