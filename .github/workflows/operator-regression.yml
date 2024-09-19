@@ -4,7 +4,7 @@ on:
   workflow_dispatch:
 
 env:
-  AGENT_TESTS: python dotnet nodejs java
+  AGENT_TESTS: go python nodejs java dotnet 
 
 jobs:
   integration-test:

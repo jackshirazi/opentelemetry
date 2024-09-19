@@ -1,0 +1,19 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: go-test-app
+  namespace: banana
+  annotations:
+    instrumentation.opentelemetry.io/inject-go: "elastic-otel/elastic-instrumentation"
+  labels:
+    app: go-test-app
+spec:
+  containers:
+    - image: ghcr.io/open-telemetry/opentelemetry-operator/e2e-test-app-go:main
+      imagePullPolicy: Always
+      name: go-test-app
+      env:
+      - name: OTEL_LOG_LEVEL
+        value: "debug"
+      - name: AGENT_HAS_STARTED_IF_YOU_SEE
+        value: "Exception while exporting metrics HTTPConnectionPool"
