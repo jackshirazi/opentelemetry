@@ -15,3 +15,11 @@ spec:
     argument: "1.0"
   java:
     image: docker.elastic.co/observability/elastic-otel-javaagent:1.0.0
+  nodejs:
+    image: ghcr.io/open-telemetry/opentelemetry-operator/autoinstrumentation-nodejs:0.52.1
+  dotnet:
+    image: ghcr.io/open-telemetry/opentelemetry-operator/autoinstrumentation-dotnet:1.2.0
+  python:
+    image: ghcr.io/open-telemetry/opentelemetry-operator/autoinstrumentation-python:0.48b0
+  go:
+    image: ghcr.io/open-telemetry/opentelemetry-go-instrumentation/autoinstrumentation-go:v0.14.0-alpha
