@@ -48,6 +48,10 @@ jobs:
           kubectl create namespace elastic-otel
           kubectl create -f test/operator/elastic-instrumentation.yml
 
+      - name: Start And Test Collector Skeleton
+        run: |
+          echo "Nothing here yet"
+
       - name: Start Test Images
         run: |
           for t in ${AGENT_TESTS[@]}
@@ -59,7 +63,3 @@ jobs:
             bash test/operator/wait_for_agent_start.sh banana $t-test-app "$AGENT_START_GREP"
             kubectl delete -f test/operator/$t/test-app.yaml
           done
-
-      - name: Test Collector Skeleton
-        run: |
-          echo "Nothing here yet"
