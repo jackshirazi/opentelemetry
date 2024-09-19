@@ -14,4 +14,4 @@ spec:
     type: parentbased_traceidratio
     argument: "1.0"
   java:
-    image: ghcr.io/open-telemetry/opentelemetry-operator/autoinstrumentation-java:2.5.0
+    image: docker.elastic.co/observability/elastic-otel-javaagent:1.0.0
