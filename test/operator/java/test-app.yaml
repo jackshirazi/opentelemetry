@@ -12,3 +12,6 @@ spec:
     - image: localhost:5001/registry/java-test-app
       imagePullPolicy: Always
       name: java-test-app
+      env:
+      - name: OTEL_JAVAAGENT_DEBUG
+        value: "true"
