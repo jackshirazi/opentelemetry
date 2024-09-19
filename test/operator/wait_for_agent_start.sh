@@ -23,6 +23,6 @@ done
 echo "error: the $NAMESPACE/$POD_NAME pod failed to start an agent within $MAX_WAIT_SECONDS seconds"
 echo "-- pod info:"
 kubectl logs $POD_NAME -n $NAMESPACE
-kubectl describe $POD_NAME -n $NAMESPACE
+kubectl describe pod/$POD_NAME -n $NAMESPACE
 echo "--"
 exit 1
