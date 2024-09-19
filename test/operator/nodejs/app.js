@@ -1,9 +1,3 @@
-/*instrumentation.ts*/
-import { diag, DiagConsoleLogger, DiagLogLevel } from '@opentelemetry/api';
-
-// For troubleshooting, set the log level to DiagLogLevel.DEBUG
-diag.setLogger(new DiagConsoleLogger(), DiagLogLevel.INFO);
-
 var http = require("http");
 
 http.createServer(function (request, response) {

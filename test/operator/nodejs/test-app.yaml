@@ -13,7 +13,7 @@ spec:
       imagePullPolicy: Always
       name: nodejs-test-app
       env:
-      - name: OTEL_JAVAAGENT_DEBUG
-        value: "true"
+      - name: OTEL_LOG_LEVEL
+        value: "debug"
       - name: AGENT_HAS_STARTED_IF_YOU_SEE
         value: "javaagent.tooling.VersionLogger - opentelemetry-javaagent"
