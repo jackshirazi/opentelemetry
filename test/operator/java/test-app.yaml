@@ -15,3 +15,5 @@ spec:
       env:
       - name: OTEL_JAVAAGENT_DEBUG
         value: "true"
+      - name: AGENT_HAS_STARTED_IF_YOU_SEE
+        value: "javaagent.tooling.VersionLogger - opentelemetry-javaagent"
