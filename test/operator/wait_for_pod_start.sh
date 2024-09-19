@@ -8,9 +8,7 @@ POD_NAME=$2
 GREP=$3
 COUNT_PODS=$4
 
-echo "Waiting an initial 10 seconds for the $NAMESPACE pods called $POD_NAME to start"
-sleep 10
-echo "Waiting up to $MAX_WAIT_SECONDS more seconds for the $NAMESPACE pods called $POD_NAME to be ready"
+echo "Waiting up to $MAX_WAIT_SECONDS seconds for the $NAMESPACE pods called $POD_NAME to be ready"
 count=0
 while [ $count -lt $MAX_WAIT_SECONDS ]
 do

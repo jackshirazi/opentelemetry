@@ -54,8 +54,12 @@ jobs:
           do
             echo "Starting pod for $t"
             kubectl create -f test/operator/$t/test-app.yaml
-            bash -x test/operator/wait_for_pod_start.sh banana $t-test-app 1/1 1
+            bash test/operator/wait_for_pod_start.sh banana $t-test-app 1/1 1
             kubectl logs $t-test-app -n banana
             kubectl delete -f test/operator/$t/test-app.yaml
-            #bash -x test/$t/agent_has_started.sh
+            bash test/operator/wait_for_pod_start.sh banana $t-test-app "javaagent.tooling.VersionLogger - opentelemetry-javaagent"
           done
+
+      - name: Test Collector Skeleton
+        run: |
+          echo "Nothing here yet"
