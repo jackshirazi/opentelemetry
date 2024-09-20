@@ -18,4 +18,4 @@ spec:
       - name: OTEL_LOG_LEVEL
         value: "debug"
       - name: AGENT_HAS_STARTED_IF_YOU_SEE
-        value: "Exception while exporting metrics HTTPConnectionPool"
+        value: "no idea"

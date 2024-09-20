@@ -18,4 +18,4 @@ spec:
       - name: ELASTIC_OTEL_LOG_TARGETS
         value: "stdout"
       - name: AGENT_HAS_STARTED_IF_YOU_SEE
-        value: "@opentelemetry/instrumentation-http Applying instrumentation patch for nodejs core module"
+        value: "Elastic Distribution of OpenTelemetry .NET"

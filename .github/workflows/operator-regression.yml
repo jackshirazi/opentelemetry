@@ -5,7 +5,7 @@ on:
 
 env:
   AGENT_TESTS: python nodejs java
-  #go dotnet both pending
+  #go dotnet --- both pending
 
 jobs:
   integration-test:
