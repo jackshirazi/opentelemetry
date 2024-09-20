@@ -59,11 +59,11 @@ jobs:
         run: |
           for t in ${AGENT_TESTS[@]}
           do
-            if [ "x$t" = "xgo" ]; then   CONTAINER_READY="2/2 2"; else   CONTAINER_READY="1/1 1"; fi
+            if [ "x$t" = "xgo" ]; then   CONTAINER_READY="2/2"; else   CONTAINER_READY="1/1"; fi
             AGENT_START_GREP=`grep -A1 AGENT_HAS_STARTED_IF_YOU_SEE test/operator/$t/test-app.yaml | perl -ne '/value:\s*"(.*)"/ && print "$1\n"'`
             echo "Starting pod for $t"
             kubectl create -f test/operator/$t/test-app.yaml
-            bash test/operator/wait_for_pod_start.sh banana $t-test-app $CONTAINER_READY
+            bash test/operator/wait_for_pod_start.sh banana $t-test-app $CONTAINER_READY 1
             bash test/operator/wait_for_agent_start.sh banana $t-test-app "$AGENT_START_GREP"
             kubectl delete -f test/operator/$t/test-app.yaml
           done
