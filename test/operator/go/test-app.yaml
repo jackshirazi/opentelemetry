@@ -10,6 +10,9 @@ metadata:
   labels:
     app: go-test-app
 spec:
+  securityContext:
+    privileged: true
+    runAsUser: 0
   containers:
     - image: ghcr.io/open-telemetry/opentelemetry-operator/e2e-test-app-golang:main
       imagePullPolicy: Always
