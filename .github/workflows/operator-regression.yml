@@ -41,7 +41,8 @@ jobs:
           #kubectl apply -f https://github.com/open-telemetry/opentelemetry-operator/releases/latest/download/opentelemetry-operator.yaml
           helm repo add open-telemetry https://open-telemetry.github.io/opentelemetry-helm-charts
           helm repo update
-          helm install opentelemetry-operator --namespace opentelemetry-operator-system open-telemetry/opentelemetry-operator --create-namespace --set "manager.collectorImage.repository=docker.elastic.co/beats/elastic-agent:8.15.0-SNAPSHOT" --set manager.extraArgs={"--enable-go-instrumentation=true"}
+          #helm install opentelemetry-operator --namespace opentelemetry-operator-system open-telemetry/opentelemetry-operator --create-namespace --set "manager.collectorImage.repository=docker.elastic.co/beats/elastic-agent:8.15.0-SNAPSHOT" --set manager.extraArgs={"--enable-go-instrumentation=true"}
+          helm install opentelemetry-operator --namespace opentelemetry-operator-system open-telemetry/opentelemetry-operator --create-namespace --set manager.extraArgs={"--enable-go-instrumentation=true"}
           bash test/operator/wait_for_pod_start.sh opentelemetry-operator-system opentelemetry-operator 2/2 1
           kubectl get pods -A
 
