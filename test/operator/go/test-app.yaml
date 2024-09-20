@@ -19,3 +19,6 @@ spec:
         value: "debug"
       - name: AGENT_HAS_STARTED_IF_YOU_SEE
         value: "no idea"
+      securityContext:
+        runAsUser: 0
+        privileged: true
