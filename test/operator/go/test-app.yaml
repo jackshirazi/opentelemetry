@@ -10,6 +10,7 @@ metadata:
   labels:
     app: go-test-app
 spec:
+  shareProcessNamespace: true
   containers:
     - image: ghcr.io/open-telemetry/opentelemetry-operator/e2e-test-app-golang:main
       imagePullPolicy: Always
