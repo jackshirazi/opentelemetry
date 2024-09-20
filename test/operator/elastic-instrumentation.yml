@@ -5,7 +5,7 @@ metadata:
   namespace: elastic-otel
 spec:
   exporter:
-    endpoint: https://f52b312dad5a47c4afd55d699770d64a.apm.us-central1.gcp.cloud.es.io:443
+    endpoint: http://opentelemetry-kube-stack-daemon-collector:4318
   propagators:
     - tracecontext
     - baggage
@@ -23,6 +23,3 @@ spec:
     image: ghcr.io/open-telemetry/opentelemetry-operator/autoinstrumentation-python:0.48b0
   go:
     image: ghcr.io/open-telemetry/opentelemetry-go-instrumentation/autoinstrumentation-go:v0.14.0-alpha
-    env:
-    - name: OTEL_EXPORTER_OTLP_HEADERS
-      value: "Authorization=Bearer H01VjHp6BrHKb7AnOr"
