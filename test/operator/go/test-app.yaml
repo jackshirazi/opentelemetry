@@ -19,3 +19,7 @@ spec:
         value: "debug"
       - name: AGENT_HAS_STARTED_IF_YOU_SEE
         value: "Exception while exporting metrics HTTPConnectionPool"
+      - name: OTEL_EXPORTER_OTLP_HEADERS
+        value: "Authorization=Bearer H01VjHp6BrHKb7AnOr"
+      - name: OTEL_EXPORTER_OTLP_ENDPOINT
+        value: "https://f52b312dad5a47c4afd55d699770d64a.apm.us-central1.gcp.cloud.es.io:443"
