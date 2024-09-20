@@ -1,8 +1,5 @@
 apiVersion: v1
 kind: Pod
-securityContext:
-  privileged: true
-  runAsUser: 0
 metadata:
   name: go-test-app
   namespace: banana
@@ -14,6 +11,9 @@ metadata:
     app: go-test-app
 spec:
   containers:
+      securityContext:
+        privileged: true
+        runAsUser: 0
     - image: ghcr.io/open-telemetry/opentelemetry-operator/e2e-test-app-golang:main
       imagePullPolicy: Always
       name: go-test-app
