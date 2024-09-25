@@ -16,7 +16,7 @@ spec:
   java:
     image: docker.elastic.co/observability/elastic-otel-javaagent:1.0.0
   nodejs:
-    image: ghcr.io/open-telemetry/opentelemetry-operator/autoinstrumentation-nodejs:0.52.1
+    image: docker.elastic.co/observability/elastic-otel-node:edge
   dotnet:
     image: docker.elastic.co/observability/elastic-otel-dotnet:edge
   python:
