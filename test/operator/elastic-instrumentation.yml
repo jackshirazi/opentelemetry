@@ -20,6 +20,6 @@ spec:
   dotnet:
     image: docker.elastic.co/observability/elastic-otel-dotnet:edge
   python:
-    image: ghcr.io/open-telemetry/opentelemetry-operator/autoinstrumentation-python:0.48b0
+    image: docker.elastic.co/observability/elastic-otel-python:edge
   go:
     image: ghcr.io/open-telemetry/opentelemetry-go-instrumentation/autoinstrumentation-go:v0.14.0-alpha
