@@ -4,7 +4,7 @@ on:
   workflow_dispatch:
 
 env:
-  AGENT_TESTS: python nodejs java
+  AGENT_TESTS: dotnet python nodejs java
   #go dotnet --- both pending
 
 jobs:
