@@ -4,7 +4,7 @@ metadata:
   name: nodejs-test-app
   namespace: banana
   annotations:
-    instrumentation.opentelemetry.io/inject-nodejs: "elastic-otel/elastic-instrumentation"
+    instrumentation.opentelemetry.io/inject-nodejs: "opentelemetry-operator-system/elastic-instrumentation"
   labels:
     app: nodejs-test-app
 spec:

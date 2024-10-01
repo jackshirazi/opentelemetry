@@ -4,7 +4,7 @@ metadata:
   name: python-test-app
   namespace: banana
   annotations:
-    instrumentation.opentelemetry.io/inject-python: "elastic-otel/elastic-instrumentation"
+    instrumentation.opentelemetry.io/inject-python: "opentelemetry-operator-system/elastic-instrumentation"
   labels:
     app: python-test-app
 spec:

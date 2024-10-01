@@ -2,7 +2,7 @@ apiVersion: opentelemetry.io/v1alpha1
 kind: Instrumentation
 metadata:
   name: elastic-instrumentation
-  namespace: elastic-otel
+  namespace: opentelemetry-operator-system
 spec:
   exporter:
     endpoint: http://opentelemetry-kube-stack-daemon-collector:4318

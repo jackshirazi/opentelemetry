@@ -4,7 +4,7 @@ metadata:
   name: dotnet-test-app
   namespace: banana
   annotations:
-    instrumentation.opentelemetry.io/inject-dotnet: "elastic-otel/elastic-instrumentation"
+    instrumentation.opentelemetry.io/inject-dotnet: "opentelemetry-operator-system/elastic-instrumentation"
   labels:
     app: dotnet-test-app
 spec:
