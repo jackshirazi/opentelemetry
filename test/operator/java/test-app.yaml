@@ -20,6 +20,4 @@ spec:
       - name: OTEL_INSTRUMENTATION_METHODS_INCLUDE
         value: "Hello[test]"
       - name: OTEL_EXPORTER_OTLP_ENDPOINT
-        value: "http://localhost:4318"
-  hostNetwork: true
-  dnsPolicy: ClusterFirstWithHostNet
+        value: "http://dockerhost:4318"
