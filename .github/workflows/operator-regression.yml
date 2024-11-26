@@ -75,6 +75,8 @@ jobs:
       - name: Start Test Images
         run: |
           kubectl create namespace banana
+          kubectl apply -f test/operator/endpoint.yml
+          kubectl apply -f test/operator/dockerhost.yml
           for t in ${AGENT_TESTS[@]}
           do
             if [ "x$t" = "xgo" ]; then   CONTAINER_READY="2/2"; else   CONTAINER_READY="1/1"; fi
