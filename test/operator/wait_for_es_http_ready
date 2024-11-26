@@ -10,7 +10,7 @@ count=0
 while [ $count -lt $MAX_WAIT_SECONDS ]
 do
   count=`expr $count + 1`
-  STARTED=$((curl "$URL" || true) | (grep build_hash || true) | wc -l)
+  STARTED=$((curl -m 2 "$URL" || true) | (grep build_hash || true) | wc -l)
   if [ $STARTED -ne 0 ]
   then
     exit 0
