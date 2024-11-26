@@ -26,7 +26,7 @@ jobs:
       - name: Collector
         run: |
            docker network create elastic
-           #Local elasticsearch without SSL so http://9200
+           #Local elasticsearch without SSL so http://localhost:9200
            docker run --name es01 --net elastic -p 9200:9200 -m 1GB -e xpack.security.enabled=false -e xpack.security.enrollment.enabled=false -e discovery.type=single-node docker.elastic.co/elasticsearch/elasticsearch:8.16.0 1>es.log 2>&1 &
            #Elastic agent from download instructions
            curl -L -O https://artifacts.elastic.co/downloads/beats/elastic-agent/elastic-agent-8.16.0-linux-x86_64.tar.gz
@@ -39,7 +39,7 @@ jobs:
            export ELASTIC_API_KEY=nothing
            sudo -E ./elastic-agent otel --config logs_metrics_traces.yml 1>collector.log 2>&1 &
            bash ../test/operator/wait_for_log_entry.sh collector.log "elastic agent collector" "Everything is ready"
-           bash ../test/operator/wait_for_es_http_ready http://9200
+           bash ../test/operator/wait_for_es_http_ready http://localhost:9200
 
       - name: Create Test Images
         run: |
