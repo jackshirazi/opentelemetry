@@ -39,7 +39,7 @@ jobs:
            #Collector confg for elastic agent
            curl -L -O https://raw.githubusercontent.com/elastic/elastic-agent/refs/heads/main/internal/pkg/otel/samples/linux/logs_metrics_traces.yml
            export STORAGE_DIR=/var/tmp
-           export ELASTIC_ENDPOINT=https://localhost:9200
+           export ELASTIC_ENDPOINT=http://localhost:9200
            export ELASTIC_API_KEY=nothing
            sudo -E ./elastic-agent otel --config logs_metrics_traces.yml 1>collector.log 2>&1 &
            bash ../test/operator/wait_for_log_entry.sh collector.log "elastic agent collector" "Everything is ready"
