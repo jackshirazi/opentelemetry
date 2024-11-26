@@ -39,7 +39,7 @@ jobs:
            export ELASTIC_API_KEY=nothing
            sudo -E ./elastic-agent otel --config logs_metrics_traces.yml 1>collector.log 2>&1 &
            bash ../test/operator/wait_for_log_entry.sh collector.log "elastic agent collector" "Everything is ready"
-           cat es.log
+           bash ../test/operator/wait_for_es_http_ready http://9200
 
       - name: Create Test Images
         run: |
