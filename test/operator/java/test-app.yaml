@@ -19,3 +19,5 @@ spec:
         value: "javaagent.tooling.VersionLogger - opentelemetry-javaagent"
       - name: OTEL_INSTRUMENTATION_METHODS_INCLUDE
         value: "Hello[test]"
+      - name: OTEL_EXPORTER_OTLP_ENDPOINT
+        value: "http://localhost:4318"
