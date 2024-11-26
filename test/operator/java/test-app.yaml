@@ -8,7 +8,6 @@ metadata:
   labels:
     app: java-test-app
 spec:
-  hostNetwork: true
   containers:
     - image: localhost:5001/registry/java-test-app
       imagePullPolicy: Always
