@@ -84,7 +84,8 @@ jobs:
             bash test/operator/wait_for_pod_start.sh banana $t-test-app $CONTAINER_READY 1
             kubectl logs pod/$t-test-app -n banana
             bash test/operator/wait_for_agent_start.sh banana $t-test-app "$AGENT_START_GREP"
+            sleep 30
             kubectl logs pod/$t-test-app -n banana
             kubectl delete -f test/operator/$t/test-app.yaml
-            curl 'https://localhost:9200/traces-apm*/_search' -H "Content-Type: application/json" -d '{"query": {"range": {"@timestamp": {"gte": "now-1h","lte": "now"}}}}'
+            curl 'http://localhost:9200/traces-apm*/_search' -H "Content-Type: application/json" -d '{"query": {"range": {"@timestamp": {"gte": "now-1h","lte": "now"}}}}'
           done
