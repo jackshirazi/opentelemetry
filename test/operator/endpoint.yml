@@ -3,9 +3,8 @@ kind: Endpoints
 metadata:
   name: collector-ip
 subsets:
-- addresses:
-  - ip: 10.1.0.199
-  ports:
-  - name: app
-    port: 4318
-    protocol: TCP
+  - addresses:
+    - ip: REPLACE
+    ports:
+    - name: collector-ip
+      port: 4318
