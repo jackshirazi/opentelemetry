@@ -25,6 +25,7 @@ jobs:
 
       - name: Start Elasticsearch
         run: |
+           curl ifconfig.me
            hostname -I | awk '{print $1}'
            docker network create elastic
            #Local elasticsearch without SSL so http://localhost:9200
@@ -78,6 +79,9 @@ jobs:
           kubectl create namespace banana
           kubectl apply -f test/operator/endpoint.yml
           kubectl apply -f test/operator/dockerhost.yml
+          kubectl create service clusterip my-service --tcp=80:80
+          HOST_IP=$(curl ifconfig.me)
+          kubectl create endpoint my-service --addresses=$HOST_IP --ports=4318
           for t in ${AGENT_TESTS[@]}
           do
             if [ "x$t" = "xgo" ]; then   CONTAINER_READY="2/2"; else   CONTAINER_READY="1/1"; fi
