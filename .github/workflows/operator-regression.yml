@@ -25,6 +25,9 @@ jobs:
 
       - name: Start Elasticsearch
         run: |
+           ifconfig -a
+           hostname -I
+           bash tt
            docker network create elastic
            #Local elasticsearch without SSL so http://localhost:9200
            docker run --name es01 --net elastic -p 9200:9200 -m 1GB -e xpack.security.enabled=false -e xpack.security.enrollment.enabled=false -e discovery.type=single-node docker.elastic.co/elasticsearch/elasticsearch:8.16.0 1>es.log 2>&1 &
