@@ -8,4 +8,4 @@ subsets:
     - ip: REPLACE
     ports:
     - name: collector-ip
-      port: 4318
+      port: 4319
