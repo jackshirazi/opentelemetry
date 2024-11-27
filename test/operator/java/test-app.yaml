@@ -20,4 +20,4 @@ spec:
       - name: OTEL_INSTRUMENTATION_METHODS_INCLUDE
         value: "Hello[test]"
       - name: OTEL_EXPORTER_OTLP_ENDPOINT
-        value: "http://collector-ip:4319"
+        value: "http://collector:4319"
