@@ -80,7 +80,9 @@ jobs:
           kubectl create namespace banana
           kubectl apply -f test/operator/dockerhost.yml
           kubectl apply -f endpoint.yml
-          javac test/operator/ProxyServer.java
+          mkdir proxy
+          mv test/operator/ProxyServer.java proxy
+          javac proxy/ProxyServer.java
           java -cp . proxy.ProxyServer > proxy.log &
           sleep 1
           cat proxy.log
