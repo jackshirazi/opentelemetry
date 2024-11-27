@@ -3,10 +3,6 @@ kind: Service
 metadata:
   name: collector-ip
 spec:
-  ports:
-  - name: app
-    port: 80
-    protocol: TCP
-    targetPort: 4318
   clusterIP: None
-  type: ClusterIP
+  ports:
+  - port: 4318
