@@ -62,6 +62,7 @@ public class ProxyServer {
                 server = (SSLSocket) sslsocketfactory.createSocket(host, remoteport);
 
             } catch (IOException e) {
+                System.out.println("Proxy server cannot connect to " + host + ":" + remoteport + ":\n" + e + "\n");
                 PrintWriter out = new PrintWriter(streamToClient);
                 out.print("Proxy server cannot connect to " + host + ":" + remoteport + ":\n" + e + "\n");
                 out.flush();
