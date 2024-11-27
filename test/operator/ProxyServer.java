@@ -95,6 +95,7 @@ public class ProxyServer {
                             }
                         }
                     } catch (IOException e) {
+                       System.err.println("1 "+e); // Prints the standard errors
                     }
 
                     // the client closed the connection to us, so close our
@@ -102,6 +103,7 @@ public class ProxyServer {
                     try {
                         streamToServer.close();
                     } catch (IOException e) {
+                       System.err.println("2 "+e); // Prints the standard errors
                     }
                 }
             };
@@ -118,12 +120,13 @@ public class ProxyServer {
                     streamToClient.flush();
                 }
             } catch (IOException e) {
+                       System.err.println("3 "+e); // Prints the standard errors
             }
             // The server closed its connection to us, so we close our
             // connection to our client.
             streamToClient.close();
         } catch (IOException e) {
-            System.err.println(e);
+                       System.err.println("4 "+e); // Prints the standard errors
         } finally {
             try {
                 if (server != null)
@@ -131,6 +134,7 @@ public class ProxyServer {
                 if (client != null)
                     client.close();
             } catch (IOException e) {
+                       System.err.println("5 "+e); // Prints the standard errors
             }
         }
     
