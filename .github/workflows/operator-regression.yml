@@ -38,10 +38,11 @@ jobs:
            cd elastic-agent-8.16.0-linux-x86_64/
            #Collector confg for elastic agent
            curl -L -O https://raw.githubusercontent.com/elastic/elastic-agent/refs/heads/main/internal/pkg/otel/samples/linux/logs_metrics_traces.yml
+           sed -e 's/http:/http:\n        endpoint: 0.0.0.0:4319/' logs_metrics_traces.yml > logs_metrics_traces2.yml
            export STORAGE_DIR=/var/tmp
            export ELASTIC_ENDPOINT=http://localhost:9200
            export ELASTIC_API_KEY=nothing
-           sudo -E ./elastic-agent otel --config logs_metrics_traces.yml 1>collector.log 2>&1 &
+           sudo -E ./elastic-agent otel --config logs_metrics_traces2.yml 1>collector.log 2>&1 &
            bash ../test/operator/wait_for_log_entry.sh collector.log "elastic agent collector" "Everything is ready"
 
       - name: Test Collector
@@ -83,9 +84,7 @@ jobs:
           mkdir proxy
           mv test/operator/ProxyServer.java proxy
           javac proxy/ProxyServer.java
-          java -cp . proxy.ProxyServer > proxy.log &
-          sleep 1
-          cat proxy.log
+          #java -cp . proxy.ProxyServer > proxy.log &
           for t in ${AGENT_TESTS[@]}
           do
             if [ "x$t" = "xgo" ]; then   CONTAINER_READY="2/2"; else   CONTAINER_READY="1/1"; fi
