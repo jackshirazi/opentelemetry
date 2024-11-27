@@ -25,7 +25,7 @@ jobs:
 
       - name: Start Elasticsearch
         run: |
-           java -version
+           javac -version
            bash tt
            docker network create elastic
            #Local elasticsearch without SSL so http://localhost:9200
