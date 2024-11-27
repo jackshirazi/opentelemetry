@@ -49,7 +49,7 @@ public class ProxyServer {
     public static void runClient(Socket client, String host, int remoteport) throws IOException {
         final byte[] request = new byte[1024];
         byte[] reply = new byte[4096];
-       SSLSocket server = null;
+        Socket server = null;
         try {
             final InputStream streamFromClient = client.getInputStream();
             final OutputStream streamToClient = client.getOutputStream();
@@ -58,8 +58,7 @@ public class ProxyServer {
             // If we cannot connect to the server, send an error to the
             // client, disconnect, and continue waiting for connections.
             try {
-                SocketFactory sslsocketfactory = SSLSocketFactory.getDefault();
-                server = (SSLSocket) sslsocketfactory.createSocket(host, remoteport);
+                server = new Socket(host, remoteport);
 
             } catch (IOException e) {
                 System.out.println("Proxy server cannot connect to " + host + ":" + remoteport + ":\n" + e + "\n");
