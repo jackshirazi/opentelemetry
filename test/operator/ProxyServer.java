@@ -81,7 +81,7 @@ public class ProxyServer {
                     try {
                         while ((bytesRead = streamFromClient.read(request)) != -1) {
                             String chunk = new String(request, 0, bytesRead);
-                           if (chunk.contains("Host: collector:4319")) {
+                           if (chunk.contains("HostX: collector:4319")) {
                                 chunk = chunk.replace("Host: collector:4319", "Host: localhost:4318");
                                 byte[] request2 = chunk.getBytes();
                                 streamToServer.write(request2, 0, request2.length);
