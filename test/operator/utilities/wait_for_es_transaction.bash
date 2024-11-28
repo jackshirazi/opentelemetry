@@ -21,7 +21,7 @@ do
   sleep 1
 done
 
-echo "error: the elasticsearch server failed to include a trabsaction with the service name $SERVICE_NAME wihin $MAX_WAIT_SECONDS seconds"
+echo "error: the elasticsearch server failed to include a transaction with the service name $SERVICE_NAME wihin $MAX_WAIT_SECONDS seconds"
 eval $KUBECTL_COMMAND
 cat query.output | jq
 exit 1
