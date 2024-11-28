@@ -6,4 +6,4 @@ metadata:
 spec:
   clusterIP: None
   ports:
-  - port: 4319
+  - port: 4318
