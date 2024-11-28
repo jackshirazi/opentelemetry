@@ -12,7 +12,10 @@ permissions:
 
 jobs:
   integration-test:
-    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        os: [observability-linux-2-arm64, ubuntu-latest]
+    runs-on: ${{ matrix.os }}
     steps:
       - name: Checkout
         uses: actions/checkout@v4
