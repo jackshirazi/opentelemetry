@@ -12,7 +12,8 @@ count=0
 while [ $count -lt $MAX_WAIT_SECONDS ]
 do
   count=`expr $count + 1`
-  curl -m 2 "$URL/traces*/_search" -H "Content-Type: application/json" -d '{"query": {"range": {"@timestamp": {"gte": "now-1h","lte": "now"}}}}' > query.output
+  #curl -m 2 "$URL/traces*/_search" -H "Content-Type: application/json" -d '{"query": {"range": {"@timestamp": {"gte": "now-1h","lte": "now"}}}}' > query.output
+  curl -m 2 "$URL/traces*/_search" -H "Content-Type: application/json" -d '{"query": {"bool": {"must": [{"range": {"@timestamp": {"gte": "now-1h","lte": "now"}}},{"match": {"resource.attributes.service.name": "java-test-app"}}]}}' > query.output
   DETECTED_SERVICE=$(jq '.hits.hits[0]._source.resource.attributes."service.name"' query.output | tr -d '"')
   if [ "x$DETECTED_SERVICE" = "x$SERVICE_NAME" ]
   then
