@@ -22,6 +22,6 @@ do
 done
 
 echo "error: the elasticsearch server failed to include a trabsaction with the service name $SERVICE_NAME wihin $MAX_WAIT_SECONDS seconds"
-exec $KUBECTL_COMMAND
+eval $KUBECTL_COMMAND
 cat query.output | jq
 exit 1
