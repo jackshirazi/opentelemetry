@@ -4,7 +4,7 @@ set -euxo pipefail
 
 MAX_WAIT_SECONDS=120
 URL=$1
-$SERVICE_NAME=$2
+SERVICE_NAME=$2
 
 echo "Waiting up to $MAX_WAIT_SECONDS seconds for the elasticsearch server to be ready by checking $URL"
 count=0
