@@ -4,8 +4,8 @@ on:
   workflow_dispatch:
 
 env:
-  AGENT_TESTS: nodejs java python
-  #go dotnet --- both pending //  
+  AGENT_TESTS: python nodejs java
+  #go dotnet --- both pending
 
 permissions:
   contents: read
