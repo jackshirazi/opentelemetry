@@ -6,7 +6,7 @@ MAX_WAIT_SECONDS=120
 URL=$1
 SERVICE_NAME=$2
 
-echo "Waiting up to $MAX_WAIT_SECONDS seconds for the elasticsearch server to be ready by checking $URL"
+echo "Waiting up to $MAX_WAIT_SECONDS seconds for the elasticsearch server to show a transaction from $SERVICE_NAME by querying $URL"
 count=0
 while [ $count -lt $MAX_WAIT_SECONDS ]
 do
