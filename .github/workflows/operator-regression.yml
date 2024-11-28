@@ -78,14 +78,10 @@ jobs:
         run: |
           HOST_IP=$(hostname -I | awk '{print $1}')
           echo "using host ip $HOST_IP"
-          sed -e "s/REPLACE/$HOST_IP/" test/operator/endpoint.yml > endpoint.yml
+          sed -e "s/REPLACE/$HOST_IP/" test/operator/utilities/endpoint.yml > endpoint.yml
           kubectl create namespace banana
-          kubectl apply -f test/operator/dockerhost.yml
+          kubectl apply -f test/operator/utilities/dummyservice.yml
           kubectl apply -f endpoint.yml
-          mkdir proxy
-          mv test/operator/ProxyServer.java proxy
-          javac proxy/ProxyServer.java
-          #java -cp . proxy.ProxyServer > proxy.log &
           for t in ${AGENT_TESTS[@]}
           do
             if [ "x$t" = "xgo" ]; then   CONTAINER_READY="2/2"; else   CONTAINER_READY="1/1"; fi
@@ -98,6 +94,5 @@ jobs:
             sleep 30
             kubectl logs pod/$t-test-app -n banana
             kubectl delete -f test/operator/$t/test-app.yaml
-            curl -v 'http://localhost:9200/traces*/_search' -H "Content-Type: application/json" -d '{"query": {"range": {"@timestamp": {"gte": "now-1h","lte": "now"}}}}'
-            cat elastic*/collector.log
+            curl -v 'http://localhost:9200/traces*/_search' -H "Content-Type: application/json" -d '{"query": {"range": {"@timestamp": {"gte": "now-1h","lte": "now"}}}}' | jq
           done
