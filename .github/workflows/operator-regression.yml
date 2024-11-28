@@ -94,5 +94,6 @@ jobs:
             sleep 30
             kubectl logs pod/$t-test-app -n banana
             kubectl delete -f test/operator/$t/test-app.yaml
-            curl -v 'http://localhost:9200/traces*/_search' -H "Content-Type: application/json" -d '{"query": {"range": {"@timestamp": {"gte": "now-1h","lte": "now"}}}}' | jq
+            DETECTED_SERVICE=$(curl -v 'http://localhost:9200/traces*/_search' -H "Content-Type: application/json" -d '{"query": {"range": {"@timestamp": {"gte": "now-1h","lte": "now"}}}}' | jq '.hits.hits.[]._source.resource.attributes."service.name"')
+            if [ "x$DETECTED_SERVICE" = "x$t-test-app" ]; then echo "GOOD!"; else echo "FAIL!"
           done
