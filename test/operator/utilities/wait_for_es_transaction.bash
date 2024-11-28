@@ -5,6 +5,7 @@ set -euxo pipefail
 MAX_WAIT_SECONDS=120
 URL=$1
 SERVICE_NAME=$2
+KUBECTL_COMMAND=$3
 
 echo "Waiting up to $MAX_WAIT_SECONDS seconds for the elasticsearch server to show a transaction from $SERVICE_NAME by querying $URL"
 count=0
@@ -21,5 +22,6 @@ do
 done
 
 echo "error: the elasticsearch server failed to include a trabsaction with the service name $SERVICE_NAME wihin $MAX_WAIT_SECONDS seconds"
+exec $KUBECTL_COMMAND
 cat query.output | jq
 exit 1
