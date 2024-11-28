@@ -1,0 +1,25 @@
+#!/bin/bash
+
+set -euxo pipefail
+
+MAX_WAIT_SECONDS=120
+URL=$1
+$SERVICE_NAME=$2
+
+echo "Waiting up to $MAX_WAIT_SECONDS seconds for the elasticsearch server to be ready by checking $URL"
+count=0
+while [ $count -lt $MAX_WAIT_SECONDS ]
+do
+  count=`expr $count + 1`
+  curl -m 2 "$URL/traces*/_search" -H "Content-Type: application/json" -d '{"query": {"range": {"@timestamp": {"gte": "now-1h","lte": "now"}}}}' > query.output
+  DETECTED_SERVICE=$(jq '.hits.hits[0]._source.resource.attributes."service.name"' query.output | tr -d '"')
+  if [ "x$DETECTED_SERVICE" = "x$SERVICE_NAME" ]
+  then
+    exit 0
+  fi
+  sleep 1
+done
+
+echo "error: the elasticsearch server failed to include a trabsaction with the service name $SERVICE_NAME wihin $MAX_WAIT_SECONDS seconds"
+cat query.output | jq
+exit 1
