@@ -4,8 +4,8 @@ on:
   workflow_dispatch:
 
 env:
-  AGENT_TESTS: java python
-  #go dotnet --- both pending //  nodejs
+  AGENT_TESTS: nodejs java python
+  #go dotnet --- both pending //  
 
 permissions:
   contents: read
@@ -14,7 +14,8 @@ jobs:
   integration-test:
     strategy:
       matrix:
-        os: [observability-linux-2-arm64, ubuntu-latest]
+        #os: [observability-linux-2-arm64, ubuntu-latest]
+        os: [ubuntu-latest]
     runs-on: ${{ matrix.os }}
     steps:
       - name: Checkout
