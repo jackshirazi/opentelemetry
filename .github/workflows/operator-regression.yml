@@ -91,7 +91,7 @@ jobs:
             bash test/operator/wait_for_pod_start.sh banana $t-test-app $CONTAINER_READY 1
             kubectl logs pod/$t-test-app -n banana
             bash test/operator/wait_for_agent_start.sh banana $t-test-app "$AGENT_START_GREP"
-            bash test/operator/utilities/wait_for_es_transaction.bash http://localhost:9200 $t-test-app
+            bash test/operator/utilities/wait_for_es_transaction.bash http://localhost:9200 $t-test-app "kubectl logs pod/$t-test-app -n banana"
             kubectl logs pod/$t-test-app -n banana
             kubectl delete -f test/operator/$t/test-app.yaml
           done
