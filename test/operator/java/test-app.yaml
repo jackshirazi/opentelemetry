@@ -19,5 +19,5 @@ spec:
         value: "javaagent.tooling.VersionLogger - opentelemetry-javaagent"
       - name: OTEL_INSTRUMENTATION_METHODS_INCLUDE
         value: "Hello[test]"
-      - name: OTEL_EXPORTER_OTLP_ENDPOINT
+      - name: XOTEL_EXPORTER_OTLP_ENDPOINT
         value: "http://collector:4318"
