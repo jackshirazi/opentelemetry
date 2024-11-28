@@ -4,6 +4,5 @@ metadata:
   name: opentelemetry-kube-stack-daemon-collector
   namespace: opentelemetry-operator-system
 spec:
-  clusterIP: None
   ports:
   - port: 4318
