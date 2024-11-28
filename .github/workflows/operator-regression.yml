@@ -99,5 +99,4 @@ jobs:
             kubectl delete -f test/operator/$t/test-app.yaml
             curl -v 'http://localhost:9200/traces*/_search' -H "Content-Type: application/json" -d '{"query": {"range": {"@timestamp": {"gte": "now-1h","lte": "now"}}}}'
             cat elastic*/collector.log
-            cat proxy.log
           done
