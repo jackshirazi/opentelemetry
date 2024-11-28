@@ -33,17 +33,18 @@ jobs:
       - name: Start Collector
         run: |
            #Elastic agent from download instructions
-           curl -L -O https://artifacts.elastic.co/downloads/beats/elastic-agent/elastic-agent-8.16.0-linux-x86_64.tar.gz
-           tar xzvf elastic-agent-8.16.0-linux-x86_64.tar.gz
-           cd elastic-agent-8.16.0-linux-x86_64/
-           #Collector confg for elastic agent
+           curl -L -O https://artifacts.elastic.co/downloads/beats/elastic-agent/elastic-agent-8.16.1-linux-x86_64.tar.gz
+           tar xzvf elastic-agent-*-linux-x86_64.tar.gz
+           cd elastic-agent-*-linux-x86_64/
+           #Use latext collector config for elastic agent
            curl -L -O https://raw.githubusercontent.com/elastic/elastic-agent/refs/heads/main/internal/pkg/otel/samples/linux/logs_metrics_traces.yml
-           sed -e 's/http:/http:\n        endpoint: 0.0.0.0:4319/' logs_metrics_traces.yml > logs_metrics_traces2.yml
+           #bind to ANY rather than LOOPBACK so that the pods can connect
+           sed -e 's/http:/http:\n        endpoint: 0.0.0.0:4318/' logs_metrics_traces.yml > logs_metrics_traces2.yml
            export STORAGE_DIR=/var/tmp
            export ELASTIC_ENDPOINT=http://localhost:9200
            export ELASTIC_API_KEY=nothing
            sudo -E ./elastic-agent otel --config logs_metrics_traces2.yml 1>collector.log 2>&1 &
-           bash ../test/operator/wait_for_log_entry.sh collector.log "elastic agent collector" "Everything is ready"
+           bash ../test/operator/utilities/wait_for_log_entry.bash collector.log "elastic agent collector" "Everything is ready"
 
       - name: Test Collector
         run: |
