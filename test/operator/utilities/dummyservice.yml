@@ -1,8 +1,8 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: opentelemetry-kube-stack-daemon-collector
-  namespace: opentelemetry-operator-system
+  name: collector
+  namespace: banana
 spec:
   ports:
   - port: 4318
