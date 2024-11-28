@@ -6,4 +6,4 @@ COPY . /app
 
 RUN pip install --no-cache-dir -r requirements.txt
 
-CMD [ "python3", "-m" , "flask", "run"]
+CMD [ "bash", "/app/start.bash"]
