@@ -4,5 +4,6 @@ metadata:
   name: collector
   namespace: banana
 spec:
+  clusterIP: None
   ports:
   - port: 4318
